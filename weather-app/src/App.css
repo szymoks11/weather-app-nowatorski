@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.min-h-screen { min-height: 100vh; }
+
+
+:root {
+  --app-bg: #f8fafc;
+}
+
+body {
+  background-color: var(--app-bg);
+}
