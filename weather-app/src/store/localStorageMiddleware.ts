@@ -1,4 +1,4 @@
-import { Middleware } from '@reduxjs/toolkit'
+import { Dispatch, MiddlewareAPI } from '@reduxjs/toolkit'
 import { RootState } from './store'
 
 const LOCAL_STORAGE_KEY = 'weatherwise-state'
@@ -29,7 +29,6 @@ export const saveState = (state: RootState) => {
 }
 
 export const localStorageMiddleware = (store: MiddlewareAPI) => (next: Dispatch) => (action: unknown) => {
-
   const result = next(action)
   saveState(store.getState())
   return result

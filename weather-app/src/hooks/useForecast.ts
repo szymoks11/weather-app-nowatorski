@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { weatherApi } from '../services/weatherApi'
-import { ForecastApiResponse } from '../types/weatherApi'
+import { ForecastApiResponse, ForecastListItem } from '../types/weatherApi'
 import { ForecastDay } from '../types/weather'
 
 interface UseForecastResult {
@@ -22,9 +22,9 @@ export const useForecast = (cityName: string): UseForecastResult => {
       setError(null)
 
       try {
-        const forecastData = await weatherApi.getForecast(cityName)
+        const forecastData: ForecastApiResponse = await weatherApi.getForecast(cityName)
         
-        const dailyForecasts: { [key: string]: any[] } = {}
+        const dailyForecasts: { [key: string]: ForecastListItem[] } = {}
         
         forecastData.list.forEach((item) => {
           const date = new Date(item.dt * 1000)
@@ -63,7 +63,7 @@ export const useForecast = (cityName: string): UseForecastResult => {
 
         setData(forecast)
       } catch (err) {
-        setError(err as Error)
+        setError(err instanceof Error ? err : new Error('Failed to fetch forecast'))
       } finally {
         setLoading(false)
       }

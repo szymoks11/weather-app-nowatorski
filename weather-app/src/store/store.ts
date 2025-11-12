@@ -1,15 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import temperatureReducer from './temperatureSlice';
 import favoritesReducer from './favoritesSlice';
+import { loadState } from './localStorageMiddleware';
 
-const preloadedState: any = (() => {
-  try {
-    const saved = localStorage.getItem('appState');
-    return saved ? JSON.parse(saved) : undefined;
-  } catch {
-    return undefined;
-  }
-})();
+const preloadedState = loadState();
 
 export const store = configureStore({
   reducer: {

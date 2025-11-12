@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { weatherApi } from '../services/weatherApi'
 import { WeatherApiResponse } from '../types/weatherApi'
 
@@ -14,7 +14,7 @@ export const useWeather = (cityName: string): UseWeatherResult => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<Error | null>(null)
 
-  const fetchWeather = async () => {
+  const fetchWeather = useCallback(async () => {
     if (!cityName) return
 
     setLoading(true)
@@ -24,15 +24,15 @@ export const useWeather = (cityName: string): UseWeatherResult => {
       const weatherData = await weatherApi.getCurrentWeather(cityName)
       setData(weatherData)
     } catch (err) {
-      setError(err as Error)
+      setError(err instanceof Error ? err : new Error('Failed to fetch weather'))
     } finally {
       setLoading(false)
     }
-  }
+  }, [cityName])
 
   useEffect(() => {
     fetchWeather()
-  }, [cityName])
+  }, [fetchWeather])
 
   return { data, loading, error, refetch: fetchWeather }
 }
