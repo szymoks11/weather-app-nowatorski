@@ -28,7 +28,8 @@ export const saveState = (state: RootState) => {
   }
 }
 
-export const localStorageMiddleware: Middleware<{}, RootState> = (store) => (next) => (action) => {
+export const localStorageMiddleware = (store: MiddlewareAPI) => (next: Dispatch) => (action: unknown) => {
+
   const result = next(action)
   saveState(store.getState())
   return result
