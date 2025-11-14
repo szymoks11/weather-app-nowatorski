@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import { weatherApi } from '../services/weatherApi'
-import { WeatherApiResponse } from '../types/weatherApi'
+import type { WeatherApiResponse } from '../types/weatherApi'
 
 interface UseWeatherResult {
   data: WeatherApiResponse | null

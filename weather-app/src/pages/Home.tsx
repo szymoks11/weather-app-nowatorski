@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { City } from '../types/weather'
+import type { City } from '../types/weather'
 import { useAppSelector } from '../store/hooks'
 import { convertTemperature, getTemperatureSymbol } from '../utils/temperature'
 import FavoriteButton from '../components/FavoriteButton'

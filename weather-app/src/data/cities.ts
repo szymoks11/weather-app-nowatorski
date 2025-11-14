@@ -1,4 +1,4 @@
-import { City } from '../types/weather'
+import type { City } from '../types/weather'
 
 export const cities: City[] = [
   { id: 1, name: 'London', country: 'GB' },

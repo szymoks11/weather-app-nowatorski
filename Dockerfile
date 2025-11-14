@@ -1,5 +1,5 @@
 # Etap 1: Budowanie aplikacji
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 WORKDIR /app
 
@@ -12,8 +12,20 @@ RUN npm ci
 # Kopiowanie kodu źródłowego
 COPY weather-app/ ./
 
-# Budowanie aplikacji Vite (tworzy folder dist/)
-RUN npm run build
+# DEBUG - sprawdź strukturę
+RUN echo "=== Checking file structure ===" && \
+    ls -la && \
+    echo "=== Checking src ===" && \
+    ls -la src/ && \
+    echo "=== Checking package.json ===" && \
+    cat package.json
+
+# DODAJ TE LINIE - Przekazanie klucza API do Vite
+ARG VITE_OPENWEATHER_API_KEY
+ENV VITE_OPENWEATHER_API_KEY=$VITE_OPENWEATHER_API_KEY
+
+# Budowanie aplikacji Vite (tworzy folder dist/) - z więcej szczegółów
+RUN npm run build -- --logLevel=info
 
 # Etap 2: Serwowanie aplikacji przez nginx (produkcja)
 FROM nginx:alpine

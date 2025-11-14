@@ -1,5 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
+// store/temperatureSlice.ts
+import { createSlice } from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
 export type TemperatureUnit = 'C' | 'F'
 
 interface TemperatureState {

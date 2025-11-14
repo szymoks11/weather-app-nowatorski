@@ -1,9 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import temperatureReducer from './temperatureSlice';
-import favoritesReducer from './favoritesSlice';
-import { loadState } from './localStorageMiddleware';
+// store/store.ts
+import { configureStore } from '@reduxjs/toolkit'
+import temperatureReducer from './temperatureSlice'
+import favoritesReducer from './favoritesSlice'
+import { loadState } from './localStorageMiddleware'
 
-const preloadedState = loadState();
+const preloadedState = loadState()
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,7 @@ export const store = configureStore({
     favorites: favoritesReducer,
   },
   preloadedState,
-});
+})
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

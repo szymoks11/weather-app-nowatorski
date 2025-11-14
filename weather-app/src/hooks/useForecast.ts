@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { weatherApi } from '../services/weatherApi'
-import { ForecastApiResponse, ForecastListItem } from '../types/weatherApi'
-import { ForecastDay } from '../types/weather'
+import type { ForecastApiResponse, ForecastListItem } from '../types/weatherApi'
+import type { ForecastDay } from '../types/weather'
 
 interface UseForecastResult {
   data: ForecastDay[]

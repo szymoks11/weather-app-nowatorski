@@ -1,5 +1,5 @@
-import { Dispatch, MiddlewareAPI } from '@reduxjs/toolkit'
-import { RootState } from './store'
+import type { Dispatch, MiddlewareAPI } from '@reduxjs/toolkit'
+import type { RootState } from './store'
 
 const LOCAL_STORAGE_KEY = 'weatherwise-state'
 

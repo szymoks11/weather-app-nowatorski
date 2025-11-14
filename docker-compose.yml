@@ -1,10 +1,10 @@
-version: '3.8'
-
 services:
   weather-app:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - VITE_OPENWEATHER_API_KEY=${VITE_OPENWEATHER_API_KEY}
     container_name: weather-app
     ports:
       - "3000:80"

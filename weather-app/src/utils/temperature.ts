@@ -1,4 +1,4 @@
-import { TemperatureUnit } from '../store/temperatureSlice'
+import type { TemperatureUnit } from '../store/temperatureSlice'
 
 export const convertTemperature = (temp: number, unit: TemperatureUnit): number => {
   if (unit === 'F') {
